@@ -1,0 +1,860 @@
+:root {
+    --font-main: 'Roboto', sans-serif;
+    --font-headers: 'JetBrains Mono', monospace;
+}
+
+body {
+    font-family: var(--font-main);
+}
+
+/* Header styles */
+.header {
+    background: linear-gradient(180deg, var(--surface-dark) 0%, rgba(30, 30, 30, 0.95) 100%);
+    padding: 0.8rem 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: var(--font-headers);
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.logo:hover {
+    color: #62E7FF;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    font-family: var(--font-headers);
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 400;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 0.3rem 0;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* Main content styles */
+.main {
+    padding-top: 2rem;
+}
+
+.unit-header {
+    text-align: center;
+    padding: 1.5rem 1rem 2rem;
+    background: linear-gradient(180deg, var(--surface-dark) 0%, rgba(30, 30, 30, 0.8) 100%);
+    margin-bottom: 2rem;
+    border-bottom: 1px solid rgba(64, 224, 255, 0.1);
+}
+
+.unit-header h1 {
+    font-family: var(--font-headers);
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.unit-description {
+    font-family: var(--font-headers);
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 300;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Vocabulary section styles */
+.vocabulary-section,
+.speaking-task,
+.listening-task,
+.reading-task {
+    margin: 0 auto 1.5rem;
+    max-width: 1200px;
+    padding: 0 1rem;
+}
+
+.vocabulary-section h2 {
+    font-family: var(--font-headers);
+    font-size: 3.2rem;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: 400;
+}
+
+.vocab-card,
+.speaking-card,
+.audio-card,
+.reading-card {
+    background: rgba(64, 224, 255, 0.03);
+    border-radius: 12px;
+    border: 1px solid rgba(64, 224, 255, 0.08);
+    margin-bottom: 1rem;
+    overflow: hidden;
+    max-width: 1200px;
+}
+
+.accordion-button {
+    width: 100%;
+    padding: 1.2rem 1.5rem;
+    background: none;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.accordion-button:hover {
+    background: rgba(64, 224, 255, 0.05);
+}
+
+.accordion-button h4 {
+    color: var(--primary-color);
+    margin: 0;
+    font-size: 1.1rem;
+    font-family: var(--font-headers);
+    font-weight: 400;
+    text-align: left;
+}
+
+.accordion-icon {
+    color: var(--primary-color);
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.accordion-icon::before,
+.accordion-icon::after {
+    content: '';
+    position: absolute;
+    background-color: var(--primary-color);
+    transition: transform 0.3s ease;
+}
+
+.accordion-icon::before {
+    width: 20px;
+    height: 2px;
+}
+
+.accordion-icon::after {
+    width: 2px;
+    height: 20px;
+}
+
+.accordion-button.active .accordion-icon::before {
+    transform: rotate(45deg);
+}
+
+.accordion-button.active .accordion-icon::after {
+    transform: rotate(45deg);
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out;
+    padding: 0 1.5rem;
+}
+
+.accordion-content.active {
+    max-height: none;
+    padding: 1.5rem;
+}
+
+.word-list ul,
+.phrasal-list ul,
+.phrases-list ul,
+.idioms-list ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 0.8rem;
+}
+
+.word-list li,
+.phrasal-list li,
+.phrases-list li,
+.idioms-list li {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    background: rgba(64, 224, 255, 0.03);
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    border: 1px solid rgba(64, 224, 255, 0.05);
+}
+
+.word-list strong,
+.phrasal-list strong,
+.idioms-list strong {
+    font-family: var(--font-headers);
+    font-weight: 400;
+    color: var(--primary-color);
+}
+
+.word-list em {
+    color: rgba(255, 255, 255, 0.5);
+    font-style: italic;
+    font-size: 0.9em;
+    padding: 0 0.5rem;
+    min-width: fit-content;
+}
+
+.phrases-list li {
+    font-size: 0.95em;
+    line-height: 1.7;
+}
+
+/* Speaking task styles */
+.speaking-task h2 {
+    font-family: var(--font-headers);
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+    font-weight: 400;
+}
+
+.topic-card {
+    background: rgba(64, 224, 255, 0.05);
+    padding: 2rem;
+    border-radius: 16px;
+    margin-bottom: 2rem;
+    border: 1px solid rgba(64, 224, 255, 0.1);
+}
+
+.topic-card h3 {
+    font-family: var(--font-headers);
+    font-weight: 400;
+    font-size: 1.3rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.topic-card p {
+    color: var(--text-secondary);
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+
+.patterns-list {
+    margin: 2rem 0;
+}
+
+.patterns-list h3 {
+    font-family: var(--font-headers);
+    font-weight: 400;
+    font-size: 1.3rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.patterns-list ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 0;
+}
+
+.patterns-list li {
+    background: rgba(64, 224, 255, 0.05);
+    padding: 0.8rem 1.2rem;
+    border-radius: 8px;
+    color: var(--primary-color);
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(64, 224, 255, 0.1);
+}
+
+.patterns-list li:hover {
+    background: rgba(64, 224, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.recording-section {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.timer {
+    font-family: var(--font-headers);
+    font-size: 3.5rem;
+    color: var(--primary-color);
+    margin: 1.5rem 0;
+    font-weight: 300;
+    display: none;
+}
+
+.control-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.btn {
+    font-family: var(--font-headers);
+    font-weight: 400;
+    font-size: 0.9rem;
+    text-transform: none;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#startButton {
+    background: linear-gradient(45deg, var(--primary-color), #62E7FF);
+    color: var(--background-dark);
+}
+
+#startButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(64, 224, 255, 0.3);
+}
+
+#stopButton {
+    background: linear-gradient(45deg, #ff4040, #ff6060);
+    color: white;
+    display: none;
+}
+
+#stopButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 64, 64, 0.3);
+}
+
+.transcription-box {
+    background: rgba(255, 255, 255, 0.02);
+    padding: 1.5rem;
+    border-radius: 16px;
+    margin: 1.5rem 0;
+    min-height: 150px;
+    white-space: pre-wrap;
+    text-align: left;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.feedback-section {
+    margin-top: 2rem;
+    text-align: left;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.feedback-score {
+    font-size: 1.3rem;
+    color: var(--primary-color);
+    margin-top: 1rem;
+    font-weight: 500;
+}
+
+/* Animations */
+.vocab-card:nth-child(1) { animation-delay: 0.1s; }
+.vocab-card:nth-child(2) { animation-delay: 0.2s; }
+.vocab-card:nth-child(3) { animation-delay: 0.3s; }
+.vocab-card:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--surface-dark);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(64, 224, 255, 0.2);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(64, 224, 255, 0.3);
+}
+
+/* Media queries */
+@media (max-width: 768px) {
+    .header {
+        position: sticky;
+        top: 0;
+        padding: 0.5rem 0;
+    }
+
+    .nav {
+        padding: 0 0.8rem;
+    }
+
+    .logo {
+        font-size: 0.9rem;
+    }
+
+    .nav-links {
+        gap: 1rem;
+    }
+
+    .nav-links a {
+        font-size: 0.8rem;
+    }
+
+    .unit-header {
+        padding: 1rem 0.8rem;
+    }
+
+    .unit-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .unit-description {
+        font-size: 0.8rem;
+        padding: 0 0.5rem;
+    }
+
+    .vocabulary-section,
+    .speaking-task,
+    .listening-task,
+    .reading-task {
+        padding: 0 1rem;
+        margin: 0 auto 1rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .reading-task {
+        padding: 0 1rem;
+        margin: 0 auto 1rem;
+    }
+
+    .reading-task h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .reading-card {
+        padding: 0;
+        width: 100%;
+        margin: 0 auto 1rem;
+    }
+
+    .vocab-card,
+    .speaking-card,
+    .audio-card,
+    .reading-card {
+        width: 100%;
+        margin: 0 auto 1rem;
+        box-sizing: border-box;
+    }
+
+    .word-list ul,
+    .phrasal-list ul,
+    .phrases-list ul,
+    .idioms-list ul {
+        grid-template-columns: 1fr;
+    }
+
+    .word-list li,
+    .phrasal-list li,
+    .phrases-list li,
+    .idioms-list li {
+        font-size: 0.85rem;
+        padding: 0.7rem 0.9rem;
+    }
+
+    .accordion-button {
+        padding: 1rem;
+    }
+
+    .accordion-button h4 {
+        font-size: 1rem;
+    }
+
+    .accordion-icon {
+        font-size: 1rem;
+        width: 20px;
+        height: 20px;
+    }
+
+    .accordion-content.active {
+        padding: 1rem;
+    }
+
+    .vocabulary-section h2 {
+        font-size: 2.4rem;
+    }
+
+    .vocab-card h3 {
+        font-size: 1.2rem;
+    }
+
+    .timer {
+        font-size: 2.8rem;
+    }
+}
+
+/* Listening task styles */
+.listening-task h2 {
+    font-family: var(--font-headers);
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+    font-weight: 400;
+}
+
+.audio-card {
+    background: rgba(64, 224, 255, 0.05);
+    border-radius: 16px;
+    border: 1px solid rgba(64, 224, 255, 0.1);
+}
+
+.audio-card h3 {
+    font-family: var(--font-headers);
+    font-weight: 400;
+    font-size: 1.3rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.audio-player {
+    margin: 2rem 0;
+    width: 100%;
+}
+
+.audio-player audio {
+    width: 100%;
+    height: 40px;
+    border-radius: 8px;
+}
+
+.task-description {
+    margin: 2rem 0;
+    color: var(--text-secondary);
+}
+
+.task-description ol {
+    margin-top: 1rem;
+    padding-left: 1.5rem;
+}
+
+.task-description li {
+    margin: 0.5rem 0;
+    line-height: 1.6;
+}
+
+.note-taking {
+    background: rgba(255, 255, 255, 0.02);
+    padding: 2rem;
+    border-radius: 12px;
+    margin-top: 2rem;
+}
+
+.note-taking h4 {
+    font-family: var(--font-headers);
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+.fill-gaps p, 
+.fill-gaps ul {
+    margin: 1rem 0;
+    line-height: 1.8;
+}
+
+.fill-gaps ul {
+    list-style: none;
+    padding-left: 1rem;
+}
+
+.fill-gaps li {
+    margin: 0.8rem 0;
+}
+
+/* Reading task styles */
+.reading-task h2 {
+    font-family: var(--font-headers);
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+    font-weight: 400;
+}
+
+.reading-card {
+    background: rgba(64, 224, 255, 0.05);
+    border-radius: 16px;
+    border: 1px solid rgba(64, 224, 255, 0.1);
+}
+
+/* Media queries update */
+@media (max-width: 768px) {
+    .reading-task {
+        padding: 1.5rem;
+        margin: 2rem 1rem;
+    }
+
+    .reading-task h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .reading-card {
+        padding: 0;
+    }
+}
+
+.h5p-exercise {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.speaking-card {
+    background: rgba(64, 224, 255, 0.05);
+    border-radius: 16px;
+    border: 1px solid rgba(64, 224, 255, 0.1);
+}
+
+.speaking-task .accordion-content.active {
+    max-height: 2000px;
+}
+
+.speaking-task .topic-card {
+    margin-top: 0;
+}
+
+.speaking-task .recording-section {
+    margin-top: 2rem;
+}
+
+/* Footer styles */
+.footer {
+    text-align: center;
+    padding: 1.5rem 1rem;
+    margin-top: 2rem;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    border-top: 1px solid rgba(64, 224, 255, 0.05);
+}
+
+/* Navigation arrows */
+.unit-navigation {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 0 1.5rem;
+}
+
+.nav-arrow {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    color: var(--primary-color);
+    padding: 1.2rem 2rem;
+    border: 1px solid rgba(64, 224, 255, 0.2);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    background: rgba(64, 224, 255, 0.03);
+    min-width: 200px;
+    justify-content: center;
+}
+
+.nav-arrow:hover {
+    background: rgba(64, 224, 255, 0.1);
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(64, 224, 255, 0.15);
+}
+
+.nav-arrow .arrow {
+    font-size: 1.8rem;
+    font-family: var(--font-headers);
+    line-height: 1;
+}
+
+.nav-arrow .nav-text {
+    font-family: var(--font-headers);
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+@media (max-width: 768px) {
+    .unit-navigation {
+        padding: 0 1rem;
+        margin: 2rem auto;
+        gap: 1rem;
+    }
+
+    .nav-arrow {
+        padding: 1rem 1.5rem;
+        min-width: 150px;
+    }
+
+    .nav-arrow .arrow {
+        font-size: 1.5rem;
+    }
+
+    .nav-arrow .nav-text {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .unit-navigation {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .nav-arrow {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+/* Remove nested accordion in reading section */
+.reading-card .h5p-exercise .accordion-button {
+    display: none;
+}
+
+.reading-card .h5p-exercise .accordion-content {
+    max-height: none;
+    padding: 0;
+}
+
+@media (max-width: 768px) {
+    .accordion-content.active {
+        padding: 1rem;
+    }
+
+    .word-list ul,
+    .phrasal-list ul,
+    .phrases-list ul,
+    .idioms-list ul {
+        grid-template-columns: 1fr;
+        gap: 0.6rem;
+    }
+
+    .word-list li,
+    .phrasal-list li,
+    .phrases-list li,
+    .idioms-list li {
+        font-size: 0.85rem;
+        padding: 0.7rem 0.9rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .word-list em {
+        display: inline-block;
+        padding: 0 0.3rem;
+    }
+
+    .vocab-card,
+    .speaking-card,
+    .audio-card,
+    .reading-card {
+        width: 100%;
+        margin: 0 auto 1rem;
+    }
+
+    .accordion-button {
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+@media (max-width: 480px) {
+    .word-list li,
+    .phrasal-list li,
+    .phrases-list li,
+    .idioms-list li {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.8rem;
+    }
+
+    .accordion-content.active {
+        padding: 0.8rem;
+    }
+}
+
+/* Section spacing and consistency */
+@media (max-width: 480px) {
+    .vocabulary-section,
+    .speaking-task,
+    .listening-task,
+    .reading-task {
+        padding: 0 0.8rem;
+        margin: 0 auto 1rem;
+    }
+
+    .reading-task {
+        padding: 0 0.8rem;
+    }
+} 
